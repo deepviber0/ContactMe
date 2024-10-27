@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+    <meta name="viewport" content="width=1200,initial-scale=0.33,maximum-scale:1.0,user-scalable=yes">
+    <title>DM</title>
+
+    <style>
+        * {
+            font-family: 'Roboto', sans-serif;
+            overflow: hidden;
+        }
+        input:focus {
+            color: red;
+            border-color: red;
+            outline: none; 
+        }
+        
+        input, textarea {
+            width: 250px;
+            height: 25px;
+        }
+
+        textarea {
+            height: 200px;
+        }
+        fieldset{
+            width:100%;
+            height:100vh;
+            
+        }
+
+        @media screen and (max-width: 375px) {
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+            }
+
+            input, textarea {
+                width: 100%;
+            }
+            fieldset{
+                width:100%;
+                height:100%;
+            }
+        }
+
+        fieldset {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 0;
+            padding: 10px;
+        }
+        body {
+            background-color: black;
+        }
+        form {
+            background: linear-gradient(25deg, rgb(33, 245, 217), rgb(7, 33, 7));
+        }
+        
+        legend {
+            color: white;
+            font-weight: bold;
+        }
+        #submit {
+            border-radius: 5px;
+        }
+        label {
+            color: white;
+        }
+
+        #submit:hover{
+            box-shadow:1px 4px 8px 4px aqua;
+        }
+        input:hover{
+            box-shadow:1px 4px 8px 4px aqua;
+        }
+        textarea:hover{
+            box-shadow:1px 4px 8px 4px aqua;
+        }
+        label{
+            margin-bottom: 10px;;
+        }
+        #submit{
+            height:33px
+        }
+        input{
+            border-radius: 7px;
+        }
+        textarea{
+            border-radius: 7px;
+        }
+
+        ::-webkit-input-placeholder{
+            color:rgb(51, 114, 215);
+            padding: 5px;
+        }
+
+        label::selection{
+            color:rgb(195, 238, 22);
+        }
+        legend::selection{
+            color:rgb(245, 130, 224);
+        }
+    </style>
+</head>
+<body>
+    <form action="https://api.web3forms.com/submit" method="POST" onsubmit="return sub(event)">
+        <fieldset>
+            <legend>Contact Me ✉️</legend><br>
+
+            <input type="hidden" name="access_key" value="f4bf5b2a-790a-4cfe-9587-1c686fc68109">
+
+            <label for="name">USERNAME:</label>
+            <input type="text" placeholder="*****" name="name" id="name" required autofocus><br><br>
+            <label for="mail">MAIL:</label>
+            <input type="email" name="mail" placeholder="example@gmail.com" id="mail" required><br><br>
+
+            <label for="message">MESSAGE:</label>
+            <textarea id="message" placeholder="Communication Here!" name="message" required></textarea><br><br>
+
+            <input type="submit" id="submit">
+        </fieldset>
+    </form>
+
+    <script>
+        function sub(event) {
+            const username = document.getElementById("name").value;
+            const email = document.getElementById("mail").value;
+            const message = document.getElementById("message").value;
+            const butt = document.getElementById("submit");
+            
+            if (username && email && message) {
+                console.log("Username:", username);
+                console.log("Email:", email);
+                console.log("Message:", message);
+                
+                butt.style.backgroundColor = "green";
+                butt.style.color = "white"; 
+                butt.style.fontWeight="bold";
+                butt.value = "Submitted!!";
+                
+                alert("Form Submitted Successfully!");
+                setTimeout(() => {
+                    document.getElementById("name").value = "";
+                    document.getElementById("mail").value = "";
+                    document.getElementById("message").value = "";
+                    butt.style.backgroundColor = "";
+                    butt.style.color = "";
+                    butt.value = "Submit";
+                }, 500);
+                return true; 
+            } else {
+                alert("Please Fill Out All Fields.");
+                event.preventDefault();
+                return false; 
+            }
+        }
+    </script>
+</body>
+</html>
